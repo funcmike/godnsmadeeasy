@@ -181,6 +181,28 @@ func (dme *GoDMEConfig) AddRecord(DomainID int, RecordRecord *Record) (*Record, 
 	return returnedRecord, err
 }
 
+// AddRecords adds a DNS records to a given domain (identified by its ID)
+func (dme *GoDMEConfig) AddRecords(DomainID int, RecordRecords []*Record) ([]*Record, error) {
+	reqStub := fmt.Sprintf("dns/managed/%v/records/createMulti", DomainID)
+	bodyData, err := json.Marshal(RecordRecords)
+	if err != nil {
+		return nil, err
+	}
+	bodyBuffer := bytes.NewReader(bodyData)
+	req, err := dme.newRequest("POST", reqStub, bodyBuffer)
+	if err != nil {
+		return nil, err
+	}
+
+	returnedRecords := []*Record{}
+	err = dme.doDMERequest(req, &returnedRecords)
+	if err != nil {
+		return nil, err
+	}
+
+	return returnedRecords, err
+}
+
 // AddDomain adds a domain to your DNS Made Easy account
 func (dme *GoDMEConfig) AddDomain(DomainRecord *Domain) (*Domain, error) {
 	reqStub := "dns/managed/"
@@ -276,6 +298,16 @@ func (dme *GoDMEConfig) AddSecondaryDomain(newSecondaryDomain SecondaryDomain) (
 func (dme *GoDMEConfig) UpdateRecord(DomainID int, Record *Record) error {
 	reqStub := fmt.Sprintf("dns/managed/%v/records/%v", DomainID, Record.ID)
 	bodyData, err := json.Marshal(Record)
+	if err != nil {
+		return err
+	}
+	return dme.genericUpdate(reqStub, bodyData)
+}
+
+// UpdateRecord updates an existing DNS record (identified by its ID) in a given domain. DNS Made Easy only returns success/fail for this method.
+func (dme *GoDMEConfig) UpdateRecords(DomainID int, Records []*Record) error {
+	reqStub := fmt.Sprintf("dns/managed/%v/records/updateMulti", DomainID)
+	bodyData, err := json.Marshal(Records)
 	if err != nil {
 		return err
 	}
