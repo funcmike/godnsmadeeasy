@@ -466,7 +466,7 @@ func getTestRecords(Updated bool) []Record {
 		Type:        "MX",
 		Value:       recDomain,
 		TTL:         recTTL,
-		MxLevel:     10,
+		MxLevel:     ptrInt(10),
 		GtdLocation: "DEFAULT",
 	})
 
@@ -524,8 +524,8 @@ func getTestRecords(Updated bool) []Record {
 	TestRecords = append(TestRecords, Record{
 		Name:        "_testsrv",
 		Type:        "SRV",
-		Priority:    10,
-		Weight:      10,
+		Priority:    ptrInt(10),
+		Weight:      ptrInt(10),
 		Port:        80,
 		Value:       recDomain,
 		TTL:         recTTL,
@@ -638,4 +638,8 @@ func doThePurge() error {
 	wg.Wait() //Wait for all the Done()'s to come through
 
 	return nil
+}
+
+func ptrInt(i int) *int {
+	return &i
 }

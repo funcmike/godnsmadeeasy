@@ -196,10 +196,10 @@ type Record struct {
 	Monitor      bool   `json:"monitor"`
 	SourceID     int    `json:"sourceId"`
 	Source       int    `json:"source"`
-	MxLevel      int    `json:"mxLevel,omitempty"`
-	Priority     int    `json:"priority,omitempty"`
+	MxLevel      *int   `json:"mxLevel,omitempty"`
+	Priority     *int   `json:"priority,omitempty"`
 	Port         int    `json:"port,omitempty"`
-	Weight       int    `json:"weight,omitempty"`
+	Weight       *int   `json:"weight,omitempty"`
 	Keywords     string `json:"keywords,omitempty"`
 	RedirectType string `json:"redirectType,omitempty"`
 	Title        string `json:"title,omitempty"`
