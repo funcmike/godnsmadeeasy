@@ -183,27 +183,29 @@ type NameServer struct {
 
 // Record represents a DNS record from DNS Made Easy (e.g. A, AAAA, PTR, NS, etc)
 type Record struct {
-	Name         string `json:"name"`
-	Value        string `json:"value"`
-	ID           int    `json:"id"`
-	Type         string `json:"type"`
-	DynamicDNS   bool   `json:"dynamicDns"`
-	Failed       bool   `json:"failed"`
-	GtdLocation  string `json:"gtdLocation"`
-	HardLink     bool   `json:"hardLink"`
-	TTL          int    `json:"ttl"`
-	Failover     bool   `json:"failover"`
-	Monitor      bool   `json:"monitor"`
-	SourceID     int    `json:"sourceId"`
-	Source       int    `json:"source"`
-	MxLevel      *int   `json:"mxLevel,omitempty"`
-	Priority     *int   `json:"priority,omitempty"`
-	Port         int    `json:"port,omitempty"`
-	Weight       *int   `json:"weight,omitempty"`
-	Keywords     string `json:"keywords,omitempty"`
-	RedirectType string `json:"redirectType,omitempty"`
-	Title        string `json:"title,omitempty"`
-	Description  string `json:"description,omitempty"`
+	Name           string `json:"name"`
+	Value          string `json:"value"`
+	ID             int    `json:"id"`
+	Type           string `json:"type"`
+	DynamicDNS     bool   `json:"dynamicDns"`
+	Failed         bool   `json:"failed"`
+	GtdLocation    string `json:"gtdLocation"`
+	HardLink       bool   `json:"hardLink"`
+	TTL            int    `json:"ttl"`
+	Failover       bool   `json:"failover"`
+	Monitor        bool   `json:"monitor"`
+	SourceID       int    `json:"sourceId"`
+	Source         int    `json:"source"`
+	MxLevel        *int   `json:"mxLevel,omitempty"`
+	Priority       *int   `json:"priority,omitempty"`
+	Port           int    `json:"port,omitempty"`
+	Weight         *int   `json:"weight,omitempty"`
+	Keywords       string `json:"keywords,omitempty"`
+	RedirectType   string `json:"redirectType,omitempty"`
+	Title          string `json:"title,omitempty"`
+	Description    string `json:"description,omitempty"`
+	CaaType        string `json:"caaType,omitempty"`
+	IssuerCritical *int   `json:"issuerCritical,omitempty"`
 }
 
 // SOA represents a Start of Authority configuration from DNS Made Easy
